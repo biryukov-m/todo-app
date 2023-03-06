@@ -22,4 +22,9 @@ export class TodoService {
     const todo = await Todo.findById(req.params.todoId);
     return todo;
   }
+
+  async deleteOne(req: IRequest<{}, IOneTodoReqParams>) {
+    const todo = await Todo.deleteOne({ _id: req.params.todoId });
+    return todo;
+  }
 }

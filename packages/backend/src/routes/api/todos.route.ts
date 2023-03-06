@@ -8,5 +8,6 @@ todosRouter.get('/:todoId', todoController.getOneTodo.bind(todoController));
 todosRouter.get('', todoController.getAllTodo.bind(todoController));
 todosRouter.post('', todoController.addTodo.bind(todoController));
 todosRouter.put('', todoController.updateTodo.bind(todoController));
+todosRouter.delete('/:todoId', todoController.deleteOneTodo.bind(todoController));
 
 export default todosRouter;

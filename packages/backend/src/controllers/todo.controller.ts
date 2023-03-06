@@ -25,6 +25,11 @@ export class TodoController {
     const todo = await this.todoService.findOne(req);
     res.send(todo);
   }
+
+  async deleteOneTodo(req: IRequest<{}, IOneTodoReqParams>, res: Response) {
+    const todo = await this.todoService.deleteOne(req);
+    res.send(todo);
+  }
 }
 
 const todoController = new TodoController(new TodoService());
