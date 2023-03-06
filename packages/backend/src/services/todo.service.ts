@@ -1,4 +1,4 @@
-import { IRequest } from '../types/request.type';
+import { IRequest, IOneTodoReqParams } from '../types/request.type';
 import { ITodo } from '../types/todos.type';
 import Todo from '../models/Todo';
 
@@ -8,8 +8,18 @@ export class TodoService {
     return todos;
   }
 
-  async Add(req: IRequest<ITodo>) {
+  async add(req: IRequest<ITodo, {}>) {
     const newTodo = await Todo.create({ ...req.body });
     return newTodo;
+  }
+
+  async update(req: IRequest<ITodo, {}>) {
+    const updatedTodo = await Todo.updateOne({ _id: req.body._id }, { ...req.body });
+    return updatedTodo;
+  }
+
+  async findOne(req: IRequest<{}, IOneTodoReqParams>) {
+    const todo = await Todo.findById(req.params.todoId);
+    return todo;
   }
 }
