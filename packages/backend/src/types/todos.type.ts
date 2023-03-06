@@ -1,5 +1,8 @@
-// TODO: Put a real interfaces here
+import { Document } from 'mongoose';
 
-export interface ITodo {
-  data: string;
+export interface ITodo extends Document {
+  title: string;
+  description: string;
+  isPublic: boolean;
+  isCompleted: boolean;
 }
