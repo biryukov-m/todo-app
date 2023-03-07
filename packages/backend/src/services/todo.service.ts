@@ -1,6 +1,6 @@
 import { IRequest, IOneTodoReqParams } from '../types/request.type';
 import { ITodo } from '../types/todos.type';
-import Todo from '../models/Todo';
+import { Todo } from '../models/Todo';
 
 export class TodoService {
   async findAll() {

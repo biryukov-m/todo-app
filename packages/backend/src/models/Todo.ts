@@ -1,4 +1,5 @@
 import { Model, model, Schema } from 'mongoose';
+import Yup from 'yup';
 import { ITodo } from '../types/todos.type';
 
 const todoSchema: Schema<ITodo> = new Schema(
@@ -27,6 +28,11 @@ const todoSchema: Schema<ITodo> = new Schema(
   { timestamps: true }
 );
 
-const Todo: Model<ITodo> = model('Todo', todoSchema);
+export const todoValidationSchema = Yup.object().shape({
+  title: Yup.string().min(5).max(40).required('Title is required field!'),
+  description: Yup.string().min(5).max(2000).required('Description is required field!'),
+  isPublic: Yup.bool().default(false),
+  isCompleted: Yup.bool().default(false)
+});
 
-export default Todo;
+export const Todo: Model<ITodo> = model('Todo', todoSchema);
