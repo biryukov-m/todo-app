@@ -1,5 +1,6 @@
-import { Model, model, Schema } from 'mongoose';
-import Yup from 'yup';
+import { isValidObjectId, Model, model, Schema } from 'mongoose';
+import { object, string, bool } from 'yup';
+
 import { ITodo } from '../types/todos.type';
 
 const todoSchema: Schema<ITodo> = new Schema(
@@ -28,11 +29,27 @@ const todoSchema: Schema<ITodo> = new Schema(
   { timestamps: true }
 );
 
-export const todoValidationSchema = Yup.object().shape({
-  title: Yup.string().min(5).max(40).required('Title is required field!'),
-  description: Yup.string().min(5).max(2000).required('Description is required field!'),
-  isPublic: Yup.bool().default(false),
-  isCompleted: Yup.bool().default(false)
+export const postTodoValidationSchema = object().shape({
+  title: string().min(5).max(40).required('Title is required field!'),
+  description: string().min(5).max(2000).required('Description is required field!'),
+  isPublic: bool().default(false),
+  isCompleted: bool().default(false)
+});
+
+export const updateTodoValidationSchema = object().shape({
+  _id: string()
+    .test('valid-object-id', 'invalid object id', (value) => isValidObjectId(value))
+    .required(),
+  title: string().min(5).max(40),
+  description: string().min(5).max(2000),
+  isPublic: bool().default(false),
+  isCompleted: bool().default(false)
+});
+
+export const getOneTodoValidationSchema = object().shape({
+  todoId: string()
+    .test('valid-object-id', 'invalid object id', (value) => isValidObjectId(value))
+    .required()
 });
 
 export const Todo: Model<ITodo> = model('Todo', todoSchema);
