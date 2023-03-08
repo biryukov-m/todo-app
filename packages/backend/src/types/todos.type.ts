@@ -6,3 +6,7 @@ export interface ITodo extends Document {
   isPublic: boolean;
   isCompleted: boolean;
 }
+
+export interface ITodoUpdate extends ITodo {
+  id: string;
+}

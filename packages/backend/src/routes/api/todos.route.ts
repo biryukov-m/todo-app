@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import { validateRequest } from '../../middleware/validateRequest.middleware';
 import { tryCatch } from '../../middleware/tryCatch.middleware';
+import { isExist } from '../../middleware/isExist.middleware';
 import {
   getOneTodoValidationSchema,
   postTodoValidationSchema,
-  updateTodoValidationSchema
+  updateTodoValidationSchema,
+  Todo
 } from '../../models/Todo';
 
 import todoController from '../../controllers/todo.controller';
@@ -13,10 +15,11 @@ const todosRouter: Router = Router();
 
 // @route   GET api/todo/:todoId
 // @desc    Get Todo by id, returns Todo from db
-// // @access  Public
+// @access  Public
 todosRouter.get(
-  '/:todoId',
+  '/:id',
   validateRequest(getOneTodoValidationSchema, 'params'),
+  isExist(Todo),
   tryCatch(todoController.getOneTodo.bind(todoController))
 );
 
@@ -26,7 +29,7 @@ todosRouter.get(
 todosRouter.get('', tryCatch(todoController.getAllTodo.bind(todoController)));
 
 // @route   POST api/todo/
-// @desc    Create new Todos, returns new Todo
+// @desc    Create new Todo, returns new Todo
 // @access  Public
 todosRouter.post(
   '',
@@ -40,6 +43,7 @@ todosRouter.post(
 todosRouter.put(
   '',
   validateRequest(updateTodoValidationSchema),
+  isExist(Todo),
   tryCatch(todoController.updateTodo.bind(todoController))
 );
 
@@ -47,8 +51,9 @@ todosRouter.put(
 // @desc    Deletes Todo by id from db, returns deleted Todo from db
 // @access  Public
 todosRouter.delete(
-  '/:todoId',
+  '/:id',
   validateRequest(getOneTodoValidationSchema, 'params'),
+  isExist(Todo),
   tryCatch(todoController.deleteOneTodo.bind(todoController))
 );
 
