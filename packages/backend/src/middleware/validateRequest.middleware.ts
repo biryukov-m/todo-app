@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { AnyObjectSchema } from 'yup';
+import { AnyObjectSchema, ValidationError } from 'yup';
 
 export const validateRequest =
   (schema: AnyObjectSchema, validate: 'body' | 'params' | 'query' = 'body') =>
@@ -19,7 +19,11 @@ export const validateRequest =
       }
       await schema.validate({ ...data });
       next();
-    } catch (err) {
-      next(err);
+    } catch (error) {
+      if (error instanceof ValidationError) {
+        res.status(400).json({ error: error.message });
+      } else {
+        res.status(500).json({ error });
+      }
     }
   };
