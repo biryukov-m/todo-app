@@ -9,15 +9,12 @@ export interface ITodo extends Document {
   isCompleted: boolean;
 }
 
-export interface ITodoUpdate {
+export interface ITodoUpdate extends Document {
+  _id: string;
   title?: string;
   description?: string;
   isPublic?: boolean;
   isCompleted?: boolean;
-}
-
-export interface ITodoUpdateReqBody extends ITodoUpdate {
-  id: string;
 }
 
 export interface IOneTodoReqParams extends ParamsDictionary {

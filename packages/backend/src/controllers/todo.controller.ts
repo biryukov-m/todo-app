@@ -1,5 +1,5 @@
 import { IRequest } from '../types/request.type';
-import { ITodo, IOneTodoReqParams, ITodoUpdateReqBody } from '../types/todos.type';
+import { ITodo, IOneTodoReqParams, ITodoUpdate } from '../types/todos.type';
 import { TodoService } from '../services/todo.service';
 
 export class TodoController {
@@ -16,9 +16,8 @@ export class TodoController {
     return newTodo;
   }
 
-  async updateTodo(req: IRequest<ITodoUpdateReqBody, {}>) {
-    const { id, ...todo } = req.body;
-    const result = await this.todoService.update(id, todo);
+  async updateTodo(req: IRequest<ITodoUpdate, {}>) {
+    const result = await this.todoService.update(req.body);
     return result;
   }
 

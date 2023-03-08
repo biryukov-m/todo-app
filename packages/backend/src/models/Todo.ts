@@ -37,7 +37,7 @@ export const postTodoValidationSchema = object().shape({
 });
 
 export const updateTodoValidationSchema = object().shape({
-  id: string()
+  _id: string()
     .test('valid-object-id', 'invalid object id', (value) => isValidObjectId(value))
     .required(),
   title: string().min(5).max(40),

@@ -5,11 +5,11 @@ export const isExist =
   <T>(model: Model<T>) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const id: string = req.params.id || req.body.id;
+      const id: string = req.params.id || req.body._id;
       const foundInDb = await model.findById(id);
       if (!foundInDb) {
         const { modelName } = model;
-        throw new Error(`Model ${modelName} with ${id} doesn't exist in db`);
+        throw new Error(`Model ${modelName} with id "${id}" doesn't exist in db`);
       }
       next();
     } catch (error) {

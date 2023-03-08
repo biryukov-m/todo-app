@@ -12,8 +12,8 @@ export class TodoService {
     return newTodo;
   }
 
-  async update(_id: string, todo: ITodoUpdate) {
-    const updatedTodo = await Todo.findByIdAndUpdate(_id, { ...todo }, { new: true });
+  async update(todo: ITodoUpdate) {
+    const updatedTodo = await Todo.findByIdAndUpdate(todo._id, todo, { new: true });
     return updatedTodo;
   }
 
