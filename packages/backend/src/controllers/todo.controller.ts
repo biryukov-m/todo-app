@@ -1,5 +1,5 @@
-import { IOneTodoReqParams, IRequest } from '../types/request.type';
-import { ITodo, ITodoUpdate } from '../types/todos.type';
+import { IRequest } from '../types/request.type';
+import { ITodo, IOneTodoReqParams, ITodoUpdateReqBody } from '../types/todos.type';
 import { TodoService } from '../services/todo.service';
 
 export class TodoController {
@@ -12,22 +12,23 @@ export class TodoController {
   }
 
   async addTodo(req: IRequest<ITodo, {}>) {
-    const newTodo = await this.todoService.add(req);
+    const newTodo = await this.todoService.add(req.body);
     return newTodo;
   }
 
-  async updateTodo(req: IRequest<ITodoUpdate, {}>) {
-    const result = await this.todoService.update(req);
+  async updateTodo(req: IRequest<ITodoUpdateReqBody, {}>) {
+    const { id, ...todo } = req.body;
+    const result = await this.todoService.update(id, todo);
     return result;
   }
 
   async getOneTodo(req: IRequest<{}, IOneTodoReqParams>) {
-    const todo = this.todoService.findOne(req);
+    const todo = this.todoService.findOne(req.params.id);
     return todo;
   }
 
   async deleteOneTodo(req: IRequest<{}, IOneTodoReqParams>) {
-    const result = await this.todoService.deleteOne(req);
+    const result = await this.todoService.deleteOne(req.params.id);
     return result;
   }
 }
