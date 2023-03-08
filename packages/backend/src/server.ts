@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import 'dotenv/config';
+import cors from 'cors';
 
 import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
@@ -17,6 +18,7 @@ connectDB();
 app.set('port', process.env.PORT || 4200);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 router.init();
 
