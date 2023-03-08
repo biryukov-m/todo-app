@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { validateRequest } from '../../middleware/validateRequest.middleware';
+import { tryCatch } from '../../middleware/tryCatch.middleware';
 import {
   getOneTodoValidationSchema,
   postTodoValidationSchema,
@@ -12,17 +13,17 @@ const todosRouter: Router = Router();
 
 // @route   GET api/todo/:todoId
 // @desc    Get Todo by id, returns Todo from db
-// @access  Public
+// // @access  Public
 todosRouter.get(
   '/:todoId',
   validateRequest(getOneTodoValidationSchema, 'params'),
-  todoController.getOneTodo.bind(todoController)
+  tryCatch(todoController.getOneTodo.bind(todoController))
 );
 
 // @route   GET api/todo/
 // @desc    Get all Todos, returns array of Todos from db
 // @access  Public
-todosRouter.get('', todoController.getAllTodo.bind(todoController));
+todosRouter.get('', tryCatch(todoController.getAllTodo.bind(todoController)));
 
 // @route   POST api/todo/
 // @desc    Create new Todos, returns new Todo
@@ -30,7 +31,7 @@ todosRouter.get('', todoController.getAllTodo.bind(todoController));
 todosRouter.post(
   '',
   validateRequest(postTodoValidationSchema),
-  todoController.addTodo.bind(todoController)
+  tryCatch(todoController.addTodo.bind(todoController))
 );
 
 // @route   PUT api/todo/
@@ -39,7 +40,7 @@ todosRouter.post(
 todosRouter.put(
   '',
   validateRequest(updateTodoValidationSchema),
-  todoController.updateTodo.bind(todoController)
+  tryCatch(todoController.updateTodo.bind(todoController))
 );
 
 // @route   DELETE api/todo/:todoId
@@ -48,7 +49,7 @@ todosRouter.put(
 todosRouter.delete(
   '/:todoId',
   validateRequest(getOneTodoValidationSchema, 'params'),
-  todoController.deleteOneTodo.bind(todoController)
+  tryCatch(todoController.deleteOneTodo.bind(todoController))
 );
 
 export default todosRouter;

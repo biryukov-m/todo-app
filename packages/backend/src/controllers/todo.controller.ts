@@ -1,4 +1,3 @@
-import { Response } from 'express';
 import { IOneTodoReqParams, IRequest } from '../types/request.type';
 import { ITodo } from '../types/todos.type';
 import { TodoService } from '../services/todo.service';
@@ -6,29 +5,30 @@ import { TodoService } from '../services/todo.service';
 export class TodoController {
   constructor(private todoService: TodoService) {}
 
-  async getAllTodo(req: IRequest<{}, {}>, res: Response) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async getAllTodo(req: IRequest<{}, {}>) {
     const todos = await this.todoService.findAll();
-    res.send(todos);
+    return todos;
   }
 
-  async addTodo(req: IRequest<ITodo, {}>, res: Response) {
+  async addTodo(req: IRequest<ITodo, {}>) {
     const newTodo = await this.todoService.add(req);
-    res.send(newTodo);
+    return newTodo;
   }
 
-  async updateTodo(req: IRequest<ITodo, {}>, res: Response) {
-    const updatedTodo = await this.todoService.update(req);
-    res.send(updatedTodo);
+  async updateTodo(req: IRequest<ITodo, {}>) {
+    const result = await this.todoService.update(req);
+    return result;
   }
 
-  async getOneTodo(req: IRequest<{}, IOneTodoReqParams>, res: Response) {
-    const todo = await this.todoService.findOne(req);
-    res.send(todo);
+  async getOneTodo(req: IRequest<{}, IOneTodoReqParams>) {
+    const todo = this.todoService.findOne(req);
+    return todo;
   }
 
-  async deleteOneTodo(req: IRequest<{}, IOneTodoReqParams>, res: Response) {
-    const todo = await this.todoService.deleteOne(req);
-    res.send(todo);
+  async deleteOneTodo(req: IRequest<{}, IOneTodoReqParams>) {
+    const result = await this.todoService.deleteOne(req);
+    return result;
   }
 }
 
