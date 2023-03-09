@@ -5,10 +5,11 @@ export const SIZES = {
 };
 
 export const FAMILIES = {
-  normal: 'Arial'
+  normal: 'Poppins, sans-serif'
 };
 
 export const WEIGHTS = {
+  light: '200',
   bold: '800',
   normal: '500'
 };
