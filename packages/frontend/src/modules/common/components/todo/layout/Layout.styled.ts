@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  width: 100%;
-  max-width: 95%;
+  width: 95%;
+  max-width: 85vw;
   margin: 0 auto;
 `;
