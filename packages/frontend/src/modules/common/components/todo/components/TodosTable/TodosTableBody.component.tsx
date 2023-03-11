@@ -1,37 +1,18 @@
 import React from 'react';
+import { ITodo } from '../../../../types/todo.types';
+import { ITableBody } from './todosTable.types';
 import * as Styled from './TodosTableBody.styled';
 
-export const TodosTableBody: React.FC = () => (
+export const TodosTableBody: React.FC<ITableBody> = ({ columns, tableData }) => (
   <Styled.Tbody>
-    <Styled.Tr>
-      <Styled.Td>Todo 1</Styled.Td>
-      <Styled.Td>Somde description</Styled.Td>
-      <Styled.Td>ACTIONS</Styled.Td>
-    </Styled.Tr>
-    <Styled.Tr>
-      <Styled.Td>Todo 1</Styled.Td>
-      <Styled.Td>Somde description</Styled.Td>
-      <Styled.Td>ACTIONS</Styled.Td>
-    </Styled.Tr>
-    <Styled.Tr>
-      <Styled.Td>Todo 1</Styled.Td>
-      <Styled.Td>Somde description</Styled.Td>
-      <Styled.Td>ACTIONS</Styled.Td>
-    </Styled.Tr>
-    <Styled.Tr>
-      <Styled.Td>Todo 1</Styled.Td>
-      <Styled.Td>Somde description</Styled.Td>
-      <Styled.Td>ACTIONS</Styled.Td>
-    </Styled.Tr>
-    <Styled.Tr>
-      <Styled.Td>Todo 1</Styled.Td>
-      <Styled.Td>Somde description</Styled.Td>
-      <Styled.Td>ACTIONS</Styled.Td>
-    </Styled.Tr>
-    <Styled.Tr>
-      <Styled.Td>Todo 1</Styled.Td>
-      <Styled.Td>Somde description</Styled.Td>
-      <Styled.Td>ACTIONS</Styled.Td>
-    </Styled.Tr>
+    {tableData.map((todo) => (
+      <Styled.Tr key={todo._id}>
+        {columns.map(({ accessor }, idx) => {
+          const tData = todo[accessor as keyof ITodo];
+          return <Styled.Td key={idx}>{tData}</Styled.Td>;
+        })}
+        <Styled.Td key={todo._id}>Actions {todo._id}</Styled.Td>
+      </Styled.Tr>
+    ))}
   </Styled.Tbody>
 );

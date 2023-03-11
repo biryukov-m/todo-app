@@ -35,10 +35,41 @@ import { TodosTable } from '../components/TodosTable/TodosTable.component';
 //   }
 // ];
 
+const todos = [
+  {
+    isPublic: false,
+    isCompleted: false,
+    _id: '6408b2b38abb0642e228aefa',
+    title: 'Todo #1 !',
+    description: 'Hello'
+  },
+  {
+    isPublic: false,
+    isCompleted: false,
+    _id: '6408b2b38abb0642e228aefc',
+    title: 'Todo #2!',
+    description: 'Hello'
+  },
+  {
+    isPublic: false,
+    isCompleted: false,
+    _id: '6408b2b38abb0642e228aefe',
+    title: 'ZTodo #1 !',
+    description: 'ZHello'
+  },
+  {
+    isPublic: true,
+    isCompleted: true,
+    _id: '6409bed919b3d618e2777b63',
+    title: 'Todo #3',
+    description: 'New todo description'
+  }
+];
+
 export const Todos: React.FC = () => (
   <>
     <Filters />
-    <TodosTable />
+    <TodosTable todos={todos} />
     <span>Pagination</span>
   </>
 );
