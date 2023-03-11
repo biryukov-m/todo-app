@@ -26,7 +26,7 @@ export const Th = styled.th`
 `;
 export const IconHolder = styled.div`
   position: relative;
-
+  cursor: pointer;
   &:hover > .default-icon-holder {
     opacity: 1;
   }

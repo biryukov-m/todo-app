@@ -13,7 +13,6 @@ export const Table = styled.table`
   & tr {
     display: grid;
     grid-template-columns: 15vw 1fr 250px;
-    cursor: pointer;
     border-collapse: collapse;
   }
 `;

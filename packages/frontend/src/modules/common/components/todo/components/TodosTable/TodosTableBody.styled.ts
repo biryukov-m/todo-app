@@ -8,11 +8,10 @@ export const Tr = styled.tr`
   &:nth-of-type(2n) {
     background-color: ${COLORS.grey};
   }
-  &:hover {
-    background-color: ${COLORS.primary};
-  }
 `;
 export const Td = styled.td`
+  display: flex;
+  align-items: center;
   font-family: ${FONTS.FAMILIES.normal};
   font-weight: ${FONTS.WEIGHTS.normal};
   font-size: ${FONTS.SIZES.m};
