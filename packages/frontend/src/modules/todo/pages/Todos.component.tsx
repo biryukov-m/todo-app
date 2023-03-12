@@ -1,6 +1,9 @@
 import React from 'react';
 import { Filters } from '../components/Filters/Filters.component';
 import { TodosTable } from '../components/TodosTable/TodosTable.component';
+import { TodosMobile } from '../components/TodosMobile/TodosMobile.component';
+import { useViewPortWidth } from '../../common/hooks/useViewPortWidth';
+import { MEDIA } from '../../theme';
 
 // const todos = [
 //   {
@@ -41,14 +44,16 @@ const todos = [
     isCompleted: false,
     _id: '6408b2b38abb0642e228aefa',
     title: 'Todo #1 !',
-    description: 'Hello'
+    description:
+      'Lorem Ipsum is simply dummy text of the prook a gng Lorem Ipsum passages, and software like Aldus PageMaing versions of Lorem Ipsum.'
   },
   {
     isPublic: false,
     isCompleted: false,
     _id: '6408b2b38abb0642e228aefc',
     title: 'Todo #2!',
-    description: 'Hello'
+    description:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard '
   },
   {
     isPublic: false,
@@ -62,14 +67,19 @@ const todos = [
     isCompleted: true,
     _id: '6409bed919b3d618e2777b63',
     title: 'Todo #3',
-    description: 'New todo description'
+    description:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ever since the 1500s,'
   }
 ];
 
-export const Todos: React.FC = () => (
-  <>
-    <Filters />
-    <TodosTable todos={todos} />
-    <span>Pagination</span>
-  </>
-);
+export const Todos: React.FC = () => {
+  const viewPortWidth = useViewPortWidth(window.innerWidth);
+  return (
+    <>
+      <Filters />
+      {viewPortWidth > MEDIA.tablet && <TodosTable {...{ todos }} />}
+      {viewPortWidth < MEDIA.mobile && <TodosMobile {...{ todos }} />}
+      <span>Pagination</span>
+    </>
+  );
+};

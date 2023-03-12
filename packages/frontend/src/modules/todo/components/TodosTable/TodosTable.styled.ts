@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SPACES, COLORS } from '../../../../../theme';
+import { SPACES, COLORS } from '../../../theme';
 
 export const Wrapper = styled.div`
   margin-bottom: ${SPACES.s};

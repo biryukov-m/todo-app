@@ -1,4 +1,4 @@
-import { ITodo } from '../../../../types/todo.types';
+import { ITodo } from '../../../common/types/todo.types';
 
 export type Order = 'asc' | 'desc';
 
@@ -10,7 +10,7 @@ export interface IColumn {
   sortable: boolean;
 }
 
-export interface ITable {
+export interface ITodos {
   todos: ITodo[];
 }
 

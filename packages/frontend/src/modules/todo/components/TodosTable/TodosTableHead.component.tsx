@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { ITodo } from '../../../../types/todo.types';
+import { ITodo } from '../../../common/types/todo.types';
 import { ITableHead, Order } from './todosTable.types';
 import * as Styled from './TodosTableHead.styled';
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, FONTS, SPACES } from '../../../../../theme';
+import { COLORS, FONTS, SPACES } from '../../../theme';
 
 export const Thead = styled.thead``;
 export const Tr = styled.tr`

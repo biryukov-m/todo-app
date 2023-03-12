@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SPACES } from '../../../../../theme';
+import { SPACES } from '../../../theme';
 
 export const Wrapper = styled.div`
   display: flex;

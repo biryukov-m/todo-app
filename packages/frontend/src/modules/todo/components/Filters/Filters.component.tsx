@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import * as Styled from './Filters.styled';
-import { Button as StyledButton } from '../../../button/button.styled';
+import { Button as StyledButton } from '../../../common/components/button/button.styled';
 
 export const Filters: React.FC = () => (
   <Styled.Wrapper>

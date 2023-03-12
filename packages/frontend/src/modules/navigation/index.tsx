@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import HomePageContainer from '../home';
 import { APP_KEYS } from '../common/consts';
-import { Layout } from '../common/components/todo/layout/Layout.component';
-import { Todos } from '../common/components/todo/pages/Todos.component';
+import { Layout } from '../todo/layout/Layout.component';
+import { Todos } from '../todo/pages/Todos.component';
 
 export const MainRouter = () => (
   <Router>

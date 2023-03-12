@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button as StyledButton } from '../../../button/button.styled';
+import { Button as StyledButton } from '../../../common/components/button/button.styled';
 import * as Styled from './Header.styled';
 
 export const Header: React.FC = () => (

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONTS, COLORS, SPACES, MEDIA } from '../../../../../theme';
+import { FONTS, COLORS, SPACES, MEDIA } from '../../../theme';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ export const ButtonGroup = styled.div`
       border-left: none;
     }
   }
-  @media screen and (max-width: ${MEDIA.mobile}) {
+  @media screen and (max-width: ${MEDIA.mobile}px) {
     width: 100%;
     & > button {
       flex-grow: 1;
@@ -35,10 +35,10 @@ export const ButtonGroup = styled.div`
 export const SearchBarWrapper = styled.div`
   position: relative;
   width: 300px;
-  @media screen and (max-width: ${MEDIA.tablet}) {
+  @media screen and (max-width: ${MEDIA.tablet}px) {
     width: 36%;
   }
-  @media screen and (max-width: ${MEDIA.mobile}) {
+  @media screen and (max-width: ${MEDIA.mobile}px) {
     width: 200px;
   }
 `;
