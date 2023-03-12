@@ -8,7 +8,7 @@ export const CustomSwitch = mui.styled(Switch)`
     width: 50px;
     height: 26px;
     padding: 0;
-  @media screen and (max-width: ${MEDIA.mobile}) {
+  @media screen and (max-width: ${MEDIA.mobile}px) {
     margin-left: ${SPACES.xl};
   }
 

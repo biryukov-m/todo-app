@@ -5,3 +5,10 @@ export interface ITodo {
   isPublic: boolean;
   isCompleted: boolean;
 }
+
+export interface ITodosItem {
+  _id: ITodo['_id'];
+  title: ITodo['title'];
+  description: ITodo['description'];
+  isCompleted: ITodo['isCompleted'];
+}
