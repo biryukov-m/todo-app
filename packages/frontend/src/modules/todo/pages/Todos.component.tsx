@@ -2,6 +2,7 @@ import React from 'react';
 import { Filters } from '../components/Filters/Filters.component';
 import { TodosTable } from '../components/TodosTable/TodosTable.component';
 import { TodosMobile } from '../components/TodosMobile/TodosMobile.component';
+import { TodosTablet } from '../components/TodosTablet/TodosTablet.component';
 import { useViewPortWidth } from '../../common/hooks/useViewPortWidth';
 import { MEDIA } from '../../theme';
 
@@ -78,6 +79,9 @@ export const Todos: React.FC = () => {
     <>
       <Filters />
       {viewPortWidth > MEDIA.tablet && <TodosTable {...{ todos }} />}
+      {viewPortWidth < MEDIA.tablet && viewPortWidth > MEDIA.mobile && (
+        <TodosTablet {...{ todos }} />
+      )}
       {viewPortWidth < MEDIA.mobile && <TodosMobile {...{ todos }} />}
       <span>Pagination</span>
     </>
