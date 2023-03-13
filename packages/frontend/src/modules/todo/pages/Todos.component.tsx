@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Filters } from '../components/Filters/Filters.component';
 import { TodosTable } from '../components/TodosTable/TodosTable.component';
 import { TodosMobile } from '../components/TodosMobile/TodosMobile.component';
 import { TodosTablet } from '../components/TodosTablet/TodosTablet.component';
 import { useViewPortWidth } from '../../common/hooks/useViewPortWidth';
 import { MEDIA } from '../../theme';
+import todoService from '../../../services/todo.service';
 
 // const todos = [
 //   {
@@ -39,7 +40,7 @@ import { MEDIA } from '../../theme';
 //   }
 // ];
 
-const todos = [
+const initTodos = [
   {
     isPublic: false,
     isCompleted: false,
@@ -74,6 +75,10 @@ const todos = [
 ];
 
 export const Todos: React.FC = () => {
+  const [todos, setTodos] = useState(initTodos);
+
+  todoService.getTodos().then((newTodos) => setTodos(newTodos));
+
   const viewPortWidth = useViewPortWidth(window.innerWidth);
   return (
     <>
