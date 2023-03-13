@@ -1,5 +1,3 @@
-import { ITodo } from '../common/types/todo.types';
-
 export class TodoModel {
   constructor(
     public _id: string,
@@ -10,7 +8,7 @@ export class TodoModel {
   ) {}
 }
 
-export const createTodoModel = (todoFromServer: ITodo) =>
+export const createTodoModel = (todoFromServer: TodoModel) =>
   new TodoModel(
     todoFromServer._id,
     todoFromServer.title,

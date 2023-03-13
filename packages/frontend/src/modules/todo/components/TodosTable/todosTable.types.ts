@@ -1,9 +1,8 @@
-import { ITodo } from '../../../common/types/todo.types';
 import { TodoModel } from '../../../models/Todo.model';
 
 export type Order = 'asc' | 'desc';
 
-export type HandleSorting = (accessor: keyof ITodo, sortOrder: Order) => void;
+export type HandleSorting = (accessor: keyof TodoModel, sortOrder: Order) => void;
 
 export interface IColumn {
   label: string;
@@ -22,5 +21,5 @@ export interface ITableHead {
 
 export interface ITableBody {
   columns: IColumn[];
-  tableData: ITodo[];
+  tableData: TodoModel[];
 }

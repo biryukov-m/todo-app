@@ -23,7 +23,7 @@ export const Todos: React.FC = () => {
 
   const viewPortWidth = useViewPortWidth(window.innerWidth);
 
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <>
         <Filters />

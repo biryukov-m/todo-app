@@ -1,14 +1,8 @@
-export interface ITodo {
-  _id: string;
-  title: string;
-  description: string;
-  isPublic: boolean;
-  isCompleted: boolean;
-}
+import { TodoModel } from '../../models/Todo.model';
 
 export interface ITodosItem {
-  _id: ITodo['_id'];
-  title: ITodo['title'];
-  description: ITodo['description'];
-  isCompleted: ITodo['isCompleted'];
+  _id: TodoModel['_id'];
+  title: TodoModel['title'];
+  description: TodoModel['description'];
+  isCompleted: TodoModel['isCompleted'];
 }

@@ -1,6 +1,5 @@
 import { BackendKeys } from '../modules/common/consts/app-keys.const';
-import { ITodo } from '../modules/common/types/todo.types';
-import { createTodoModel } from '../modules/models/Todo.model';
+import { createTodoModel, TodoModel } from '../modules/models/Todo.model';
 import { HttpService } from './http.service';
 
 class TodoService extends HttpService {
@@ -14,7 +13,7 @@ class TodoService extends HttpService {
   async getTodos() {
     const response = await this.get({ url: this.moduleUrl });
     const json = await response.json();
-    const todos: ITodo[] = json.result;
+    const todos: TodoModel[] = json.result;
     return todos.map((todo) => createTodoModel(todo));
   }
 
