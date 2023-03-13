@@ -1,6 +1,5 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { CircularProgress } from '@mui/material';
 import { Filters } from '../components/Filters/Filters.component';
 import { TodosTable } from '../components/TodosTable/TodosTable.component';
 import { TodosMobile } from '../components/TodosMobile/TodosMobile.component';
@@ -9,6 +8,7 @@ import { useViewPortWidth } from '../../common/hooks/useViewPortWidth';
 import { MEDIA } from '../../theme';
 import todoService from '../../../services/todo.service';
 import * as Styled from './Todos.styles';
+import { Spinner as StyledSpinner } from '../../common/components/spinner/spinner.styled';
 import { QueryKeys } from '../../common/consts/app-keys.const';
 
 export const Todos: React.FC = () => {
@@ -23,12 +23,12 @@ export const Todos: React.FC = () => {
 
   const viewPortWidth = useViewPortWidth(window.innerWidth);
 
-  if (isLoading) {
+  if (!isLoading) {
     return (
       <>
         <Filters />
         <Styled.SpinnerWrapper>
-          <CircularProgress />
+          <StyledSpinner />
         </Styled.SpinnerWrapper>
       </>
     );
