@@ -7,12 +7,9 @@ export enum StorageKeys {
 }
 
 // React-query keys
-export const QUERY_KEYS = {
-  EXAMPLE: 'EXAMPLE',
-  TOKEN: 'TOKEN',
-  STATISTIC: 'statistic',
-  TRENDING: 'trending'
-};
+export enum QueryKeys {
+  TODOS = 'todos'
+}
 
 // Backend Routes
 export enum BackendKeys {

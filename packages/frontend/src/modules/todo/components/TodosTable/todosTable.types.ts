@@ -1,4 +1,5 @@
 import { ITodo } from '../../../common/types/todo.types';
+import { TodoModel } from '../../../models/Todo.model';
 
 export type Order = 'asc' | 'desc';
 
@@ -11,7 +12,7 @@ export interface IColumn {
 }
 
 export interface ITodos {
-  todos: ITodo[];
+  todos: TodoModel[];
 }
 
 export interface ITableHead {
