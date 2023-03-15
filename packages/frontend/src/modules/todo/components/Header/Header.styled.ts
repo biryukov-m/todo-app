@@ -14,3 +14,7 @@ export const Flex = styled.div`
   justify-content: space-between;
   flex-direction: row-reverse;
 `;
+export const ButtonGroup = styled.div`
+  display: flex;
+  gap: ${SPACES.l};
+`;

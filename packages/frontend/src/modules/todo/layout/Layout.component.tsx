@@ -7,6 +7,7 @@ export const Layout: React.FC = () => (
   <>
     <Header />
     <Styled.Layout>
+      <div id="modal" />
       <Outlet />
     </Styled.Layout>
   </>
