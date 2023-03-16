@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Styled from './TodosTable.styled';
 import { TodosTableHead } from './TodosTableHead.component';
 import { TodosTableBody } from './TodosTableBody.component';
@@ -25,6 +25,11 @@ export const TodosTable: React.FC<ITodos> = ({ todos }) => {
       setTableData(sorted);
     }
   };
+
+  useEffect(() => {
+    setTableData(todos);
+  }, [todos]);
+
   return (
     <Styled.Wrapper>
       <Styled.Table>
