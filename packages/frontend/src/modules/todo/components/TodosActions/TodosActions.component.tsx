@@ -11,7 +11,7 @@ interface IProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const TodosActions: React.FC<IProps> = ({ id, isCompleted }) => {
-  console.log('asd');
+  console.log(' ');
 
   return (
     <Styled.Wrapper>

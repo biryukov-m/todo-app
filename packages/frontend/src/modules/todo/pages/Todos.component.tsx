@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Filters } from '../components/Filters/Filters.component';
 import { TodosTable } from '../components/TodosTable/TodosTable.component';
 import { TodosMobile } from '../components/TodosMobile/TodosMobile.component';
@@ -18,7 +18,8 @@ export const Todos: React.FC = () => {
     isSuccess
   } = useQuery({
     queryFn: () => todoService.getTodos(),
-    queryKey: [QueryKeys.TODOS]
+    queryKey: [QueryKeys.TODOS],
+    staleTime: 30000
   });
 
   const viewPortWidth = useViewPortWidth(window.innerWidth);
