@@ -13,6 +13,6 @@ export const createTodoModel = (todoFromServer: TodoModel) =>
     todoFromServer._id,
     todoFromServer.title,
     todoFromServer.description,
-    todoFromServer.isCompleted,
-    todoFromServer.isPublic
+    todoFromServer.isPublic,
+    todoFromServer.isCompleted
   );
