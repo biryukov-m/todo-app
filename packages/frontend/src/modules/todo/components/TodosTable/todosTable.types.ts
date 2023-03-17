@@ -10,7 +10,7 @@ export interface IColumn {
   sortable: boolean;
 }
 
-export interface ITodos {
+export interface ITodosProps {
   todos: TodoModel[];
 }
 

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import * as Styled from './TodosTable.styled';
 import { TodosTableHead } from './TodosTableHead.component';
 import { TodosTableBody } from './TodosTableBody.component';
-import { HandleSorting, ITodos } from './todosTable.types';
+import { HandleSorting, ITodosProps } from './todosTable.types';
 
-export const TodosTable: React.FC<ITodos> = ({ todos }) => {
+export const TodosTable: React.FC<ITodosProps> = ({ todos }) => {
   const [tableData, setTableData] = useState(todos);
   const columns = [
     { label: 'Title', accessor: 'title', sortable: true },
