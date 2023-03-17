@@ -1,10 +1,10 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { ITodos } from '../TodosTable/todosTable.types';
+import { ITodosProps } from '../TodosTable/todosTable.types';
 import * as Styled from './TodosTablet.styled';
 import { TodosMobileItem } from '../TodosMobile/TodosMobileItem.component';
 
-export const TodosTablet: React.FC<ITodos> = ({ todos }) => (
+export const TodosTablet: React.FC<ITodosProps> = ({ todos }) => (
   <SwipeableViews>
     {todos.map((todo) => (
       <Styled.Wrapper key={todo._id}>
