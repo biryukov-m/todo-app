@@ -35,6 +35,7 @@ export const AddTodoForm: React.FC<IProps> = ({ onClose }) => {
           onSubmit={(values, { setSubmitting }) => {
             addTodo(values);
             setSubmitting(false);
+            onClose();
           }}
         >
           {({ isSubmitting }) => (
