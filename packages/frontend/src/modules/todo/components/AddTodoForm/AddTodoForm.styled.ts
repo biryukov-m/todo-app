@@ -20,14 +20,14 @@ export const Inner = styled.div`
   height: 100vh;
 
   form {
+    background-color: ${COLORS.white};
+    padding: ${SPACES.xl};
     h2 {
       font-family: ${FONTS.FAMILIES.normal};
       font-size: ${FONTS.SIZES.l};
       color: ${COLORS.black};
       margin-bottom: ${SPACES.m};
     }
-    background-color: ${COLORS.white};
-    padding: ${SPACES.xl};
     input {
       display: block;
       width: 100%;
@@ -47,6 +47,14 @@ export const Inner = styled.div`
     }
     .errors {
       position: absolute;
+      color: ${COLORS.secondary};
+      font-family: ${FONTS.FAMILIES.normal};
+      font-size: ${FONTS.SIZES.s};
+    }
+    label {
+      color: ${COLORS.black};
+      font-family: ${FONTS.FAMILIES.normal};
+      font-size: ${FONTS.SIZES.m};
     }
   }
 `;
@@ -54,6 +62,12 @@ export const Inner = styled.div`
 export const ErrorContainer = styled.div`
   position: relative;
   padding-bottom: ${SPACES.xl};
+`;
+
+export const SwitchContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: ${SPACES.l};
 `;
 
 export const ButtonsContainer = styled.div`

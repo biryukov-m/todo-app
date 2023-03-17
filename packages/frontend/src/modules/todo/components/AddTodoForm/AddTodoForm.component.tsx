@@ -7,6 +7,7 @@ import { Button as StyledButton } from '../../../common/components/button/button
 import todoService from '../../../../services/todo.service';
 import { ITodoPostBody } from '../../../common/types/todo.types';
 import { QueryKeys } from '../../../common/consts/app-keys.const';
+import { CustomSwitch } from '../../../common/components/switch/switch.styled';
 
 interface IProps {
   onClose(): void;
@@ -30,7 +31,7 @@ export const AddTodoForm: React.FC<IProps> = ({ onClose }) => {
     <Styled.Wrapper>
       <Styled.Inner>
         <Formik
-          initialValues={{ title: '', description: '' }}
+          initialValues={{ title: '', description: '', isPublic: false }}
           validationSchema={addTodoFormValidationSchema}
           onSubmit={(values, { setSubmitting }) => {
             addTodo(values);
@@ -38,17 +39,32 @@ export const AddTodoForm: React.FC<IProps> = ({ onClose }) => {
             onClose();
           }}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, values, handleChange }) => (
             <Form>
               <h2>Add Todo</h2>
-              <Field type="text" name="title" />
+
+              <label htmlFor="title">Title</label>
+              <Field type="text" name="title" id="title" />
               <Styled.ErrorContainer>
                 <ErrorMessage name="title" component="div" className="errors" />
               </Styled.ErrorContainer>
-              <Field type="text" as="textarea" rows="10" name="description" />
+
+              <label htmlFor="description">Description</label>
+              <Field type="text" as="textarea" rows="10" name="description" id="description" />
               <Styled.ErrorContainer>
                 <ErrorMessage name="description" component="div" className="errors" />
               </Styled.ErrorContainer>
+
+              <Styled.SwitchContainer>
+                <label htmlFor="isPublic">Public</label>
+                <CustomSwitch
+                  name="isPublic"
+                  id="isPublic"
+                  checked={values.isPublic}
+                  onChange={handleChange}
+                />
+              </Styled.SwitchContainer>
+
               <Styled.ButtonsContainer>
                 <StyledButton type="button" onClick={onClose}>
                   Close
