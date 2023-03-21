@@ -18,8 +18,11 @@ class TodoService extends HttpService {
     return todos.map((todo) => createTodoModel(todo));
   }
 
-  getTodo(id: string) {
-    return this.get({ url: `${this.moduleUrl}/${id}` });
+  async getTodo(id: string) {
+    const response = await this.get({ url: `${this.moduleUrl}/${id}` });
+    const json = await response.json();
+    const todo: TodoModel = json.result;
+    return createTodoModel(todo);
   }
 
   addTodo(body: ITodoPostBody) {

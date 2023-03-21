@@ -1,15 +1,15 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Filters } from '../components/Filters/Filters.component';
-import { TodosTable } from '../components/TodosTable/TodosTable.component';
-import { TodosMobile } from '../components/TodosMobile/TodosMobile.component';
-import { TodosTablet } from '../components/TodosTablet/TodosTablet.component';
-import { useViewPortWidth } from '../../common/hooks/useViewPortWidth';
-import { MEDIA } from '../../theme';
-import todoService from '../../../services/todo.service';
+import { Filters } from '../../components/Filters/Filters.component';
+import { TodosTable } from '../../components/TodosTable/TodosTable.component';
+import { TodosMobile } from '../../components/TodosMobile/TodosMobile.component';
+import { TodosTablet } from '../../components/TodosTablet/TodosTablet.component';
+import { useViewPortWidth } from '../../../common/hooks/useViewPortWidth';
+import { MEDIA } from '../../../theme';
+import todoService from '../../../../services/todo.service';
 import * as Styled from './Todos.styles';
-import { Spinner as StyledSpinner } from '../../common/components/spinner/spinner.styled';
-import { QueryKeys } from '../../common/consts/app-keys.const';
+import { Spinner as StyledSpinner } from '../../../common/components/spinner/spinner.styled';
+import { QueryKeys } from '../../../common/consts/app-keys.const';
 
 export const Todos: React.FC = () => {
   const {

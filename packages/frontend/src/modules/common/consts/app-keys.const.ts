@@ -8,7 +8,8 @@ export enum StorageKeys {
 
 // React-query keys
 export enum QueryKeys {
-  TODOS = 'todos'
+  TODOS = 'todos',
+  TODO = 'todo'
 }
 
 // Backend Routes
@@ -18,7 +19,8 @@ export enum BackendKeys {
 
 export const ROUTER_KEYS = {
   // ROOT: '/',
-  TODOS_ROOT: '/'
+  TODOS_ROOT: '/',
+  TODO: '/todo/:id'
   // HOME: 'home',
   // AUTHORIZED: 'authorized',
 };
