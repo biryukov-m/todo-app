@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import todoService from '../../../../services/todo.service';
+import { GoBack } from '../../../common/components/goBack/goBack.component';
 import { Spinner } from '../../../common/components/spinner/spinner.styled';
 import { CustomSwitch } from '../../../common/components/switch/switch.styled';
 import { QueryKeys } from '../../../common/consts/app-keys.const';
@@ -45,7 +46,7 @@ export const TodoView: React.FC = () => {
             <CustomSwitch checked={todo.isPublic} />
           </Styled.SwitchContainer>
         </Styled.Switches>
-        <span>Back</span>
+        <GoBack />
       </>
     );
   }
