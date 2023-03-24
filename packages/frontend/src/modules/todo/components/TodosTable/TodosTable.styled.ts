@@ -12,7 +12,7 @@ export const Table = styled.table`
   border-collapse: collapse;
   & tr {
     display: grid;
-    grid-template-columns: 15vw 1fr 250px;
+    grid-template-columns: 12vw 1fr 304px;
     border-collapse: collapse;
   }
 `;
