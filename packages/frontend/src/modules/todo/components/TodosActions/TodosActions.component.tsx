@@ -9,8 +9,7 @@ import { TodoModel } from '../../../models/Todo.model';
 import todoService from '../../../../services/todo.service';
 import { QueryKeys, ROUTER_KEYS } from '../../../common/consts/app-keys.const';
 import { ITodoUpdateBody } from '../../../common/types/todo.types';
-
-import { TodoFormEdit } from '../TodoForm/TodoEdit.component';
+import { TodoEditForm } from '../TodoForm/TodoEditForm.component';
 
 interface IProps {
   id: TodoModel['_id'];
@@ -32,6 +31,7 @@ export const TodosActions: React.FC<IProps> = ({ id, isCompleted }) => {
     mutationFn: (body: ITodoUpdateBody) => todoService.updateTodo(body),
     onSuccess: () => {
       queryClient.invalidateQueries([QueryKeys.TODOS]);
+      queryClient.refetchQueries([QueryKeys.TODO, id]);
     }
   });
 
@@ -53,7 +53,7 @@ export const TodosActions: React.FC<IProps> = ({ id, isCompleted }) => {
     <Styled.Wrapper>
       {modal &&
         modalRoot &&
-        createPortal(<TodoFormEdit {...{ id }} onClose={() => setModal(false)} />, modalRoot)}
+        createPortal(<TodoEditForm {...{ id }} onClose={() => setModal(false)} />, modalRoot)}
       <Link to={ROUTER_KEYS.TODO.replace(':id', id)}>
         <StyledButton>View</StyledButton>
       </Link>

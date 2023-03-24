@@ -1,78 +1,109 @@
 import React from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { UseMutateFunction } from '@tanstack/react-query';
+import todoService from '../../../../services/todo.service';
+import { QueryKeys } from '../../../common/consts/app-keys.const';
+import { useTodo } from '../../hooks/useTodo';
+import { Spinner } from '../../../common/components/spinner/spinner.styled';
+import { SpinnerWrapper } from '../../pages/TodoView/TodoView.styled';
 import * as Styled from './TodoForm.styled';
 import { Button as StyledButton } from '../../../common/components/button/button.styled';
 import { CustomSwitch } from '../../../common/components/switch/switch.styled';
 import { todoFormValidationSchema } from './TodoFormValidationSchema';
-import { TodoModel } from '../../../models/Todo.model';
 import { ITodoUpdateBody } from '../../../common/types/todo.types';
 
 interface IProps {
-  todo: TodoModel;
+  id: string;
   onClose(): void;
-  updateTodo: UseMutateFunction<Response, unknown, ITodoUpdateBody, unknown>;
 }
 
-export const TodoEditForm: React.FC<IProps> = ({ todo, onClose, updateTodo }) => (
-  <Styled.Wrapper>
-    <Styled.Inner>
-      <Formik
-        initialValues={{ ...todo }}
-        validationSchema={todoFormValidationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          updateTodo(values);
-          setSubmitting(false);
-          onClose();
-        }}
-      >
-        {({ isSubmitting, values, handleChange }) => (
-          <Form>
-            <h2>Edit Todo</h2>
+export const TodoEditForm: React.FC<IProps> = ({ id, onClose }) => {
+  const queryClient = useQueryClient();
+  const { data: todo, error, isLoading, isSuccess } = useTodo(id);
+  const { mutate: updateTodo } = useMutation({
+    mutationFn: (body: ITodoUpdateBody) => todoService.updateTodo(body),
+    onSuccess: () => {
+      queryClient.refetchQueries([QueryKeys.TODOS]);
+      queryClient.refetchQueries([QueryKeys.TODO, id]);
+    }
+  });
 
-            <label htmlFor="title">Title</label>
-            <Field type="text" name="title" id="title" />
-            <Styled.ErrorContainer>
-              <ErrorMessage name="title" component="div" className="errors" />
-            </Styled.ErrorContainer>
+  if (isLoading) {
+    return (
+      <SpinnerWrapper>
+        <Spinner />
+      </SpinnerWrapper>
+    );
+  }
 
-            <label htmlFor="description">Description</label>
-            <Field type="text" as="textarea" rows="10" name="description" id="description" />
-            <Styled.ErrorContainer>
-              <ErrorMessage name="description" component="div" className="errors" />
-            </Styled.ErrorContainer>
+  if (isSuccess) {
+    return (
+      <Styled.Wrapper>
+        <Styled.Inner>
+          <Formik
+            initialValues={{ ...todo }}
+            validationSchema={todoFormValidationSchema}
+            onSubmit={(values, { setSubmitting }) => {
+              updateTodo(values);
+              setSubmitting(false);
+              onClose();
+            }}
+          >
+            {({ isSubmitting, values, handleChange }) => (
+              <Form>
+                <h2>Edit Todo</h2>
 
-            <Styled.SwitchContainer>
-              <label htmlFor="isPublic">Public</label>
-              <CustomSwitch
-                name="isPublic"
-                id="isPublic"
-                checked={values.isPublic}
-                onChange={handleChange}
-              />
-            </Styled.SwitchContainer>
+                <label htmlFor="title">Title</label>
+                <Field type="text" name="title" id="title" />
+                <Styled.ErrorContainer>
+                  <ErrorMessage name="title" component="div" className="errors" />
+                </Styled.ErrorContainer>
 
-            <Styled.SwitchContainer>
-              <label htmlFor="isCompleted">Completed</label>
-              <CustomSwitch
-                name="isCompleted"
-                id="isCompleted"
-                checked={values.isCompleted}
-                onChange={handleChange}
-              />
-            </Styled.SwitchContainer>
+                <label htmlFor="description">Description</label>
+                <Field type="text" as="textarea" rows="10" name="description" id="description" />
+                <Styled.ErrorContainer>
+                  <ErrorMessage name="description" component="div" className="errors" />
+                </Styled.ErrorContainer>
 
-            <Styled.ButtonsContainer>
-              <StyledButton type="button" onClick={onClose}>
-                Close
-              </StyledButton>
-              <StyledButton type="submit" disabled={isSubmitting}>
-                Submit
-              </StyledButton>
-            </Styled.ButtonsContainer>
-          </Form>
-        )}
-      </Formik>
-    </Styled.Inner>
-  </Styled.Wrapper>
-);
+                <Styled.SwitchContainer>
+                  <label htmlFor="isPublic">Public</label>
+                  <CustomSwitch
+                    name="isPublic"
+                    id="isPublic"
+                    checked={values.isPublic}
+                    onChange={handleChange}
+                  />
+                </Styled.SwitchContainer>
+
+                <Styled.SwitchContainer>
+                  <label htmlFor="isCompleted">Completed</label>
+                  <CustomSwitch
+                    name="isCompleted"
+                    id="isCompleted"
+                    checked={values.isCompleted}
+                    onChange={handleChange}
+                  />
+                </Styled.SwitchContainer>
+
+                <Styled.ButtonsContainer>
+                  <StyledButton type="button" onClick={onClose}>
+                    Close
+                  </StyledButton>
+                  <StyledButton type="submit" disabled={isSubmitting}>
+                    Submit
+                  </StyledButton>
+                </Styled.ButtonsContainer>
+              </Form>
+            )}
+          </Formik>
+        </Styled.Inner>
+      </Styled.Wrapper>
+    );
+  }
+
+  return (
+    <h3>
+      Error while loading todo: {error instanceof Error ? error.message : JSON.stringify(error)}
+    </h3>
+  );
+};
