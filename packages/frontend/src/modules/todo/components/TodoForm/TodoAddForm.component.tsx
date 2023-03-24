@@ -1,22 +1,17 @@
 import React from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { object, string } from 'yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import * as Styled from './AddTodoForm.styled';
+import * as Styled from './TodoForm.styled';
 import { Button as StyledButton } from '../../../common/components/button/button.styled';
 import todoService from '../../../../services/todo.service';
 import { ITodoPostBody } from '../../../common/types/todo.types';
 import { QueryKeys } from '../../../common/consts/app-keys.const';
 import { CustomSwitch } from '../../../common/components/switch/switch.styled';
+import { todoFormValidationSchema } from './TodoFormValidationSchema';
 
 interface IProps {
   onClose(): void;
 }
-
-export const addTodoFormValidationSchema = object().shape({
-  title: string().min(5).max(40).required('Title is required field!'),
-  description: string().min(5).max(2000).required('Description is required field!')
-});
 
 export const AddTodoForm: React.FC<IProps> = ({ onClose }) => {
   const queryClient = useQueryClient();
@@ -32,7 +27,7 @@ export const AddTodoForm: React.FC<IProps> = ({ onClose }) => {
       <Styled.Inner>
         <Formik
           initialValues={{ title: '', description: '', isPublic: false }}
-          validationSchema={addTodoFormValidationSchema}
+          validationSchema={todoFormValidationSchema}
           onSubmit={(values, { setSubmitting }) => {
             addTodo(values);
             setSubmitting(false);

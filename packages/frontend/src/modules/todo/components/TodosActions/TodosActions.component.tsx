@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import * as Styled from './TodosActions.styled';
 import { CustomSwitch as StyledSwitch } from '../../../common/components/switch/switch.styled';
 import { Button as StyledButton } from '../../../common/components/button/button.styled';
@@ -9,12 +10,16 @@ import todoService from '../../../../services/todo.service';
 import { QueryKeys, ROUTER_KEYS } from '../../../common/consts/app-keys.const';
 import { ITodoUpdateBody } from '../../../common/types/todo.types';
 
+import { TodoFormEdit } from '../TodoForm/TodoEdit.component';
+
 interface IProps {
   id: TodoModel['_id'];
   isCompleted: TodoModel['isCompleted'];
 }
 
 export const TodosActions: React.FC<IProps> = ({ id, isCompleted }) => {
+  const [modal, setModal] = useState(false);
+
   const queryClient = useQueryClient();
   const { mutate: deleteTodo } = useMutation({
     mutationFn: (todoId: string) => todoService.deleteTodo(todoId),
@@ -34,15 +39,25 @@ export const TodosActions: React.FC<IProps> = ({ id, isCompleted }) => {
     deleteTodo(id);
   };
 
+  const handleEditClick = () => {
+    setModal(true);
+  };
+
   const handleSwitchCompletedClick = () => {
     switchCompletedTodo({ _id: id, isCompleted: !isCompleted });
   };
 
+  const modalRoot = document.getElementById('modal');
+
   return (
     <Styled.Wrapper>
+      {modal &&
+        modalRoot &&
+        createPortal(<TodoFormEdit {...{ id }} onClose={() => setModal(false)} />, modalRoot)}
       <Link to={ROUTER_KEYS.TODO.replace(':id', id)}>
         <StyledButton>View</StyledButton>
       </Link>
+      <StyledButton onClick={handleEditClick}>Edit</StyledButton>
       <StyledButton onClick={handleDeleteClick}>Delete</StyledButton>
       <StyledSwitch onClick={handleSwitchCompletedClick} checked={isCompleted} />
     </Styled.Wrapper>

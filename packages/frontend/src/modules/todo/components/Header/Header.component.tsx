@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Button as StyledButton } from '../../../common/components/button/button.styled';
-import { AddTodoForm } from '../AddTodoForm/AddTodoForm.component';
+import { AddTodoForm } from '../TodoForm/TodoAddForm.component';
 import * as Styled from './Header.styled';
 
 export const Header: React.FC = () => {
