@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   margin: 0 0 ${SPACES.m};
   flex-wrap: wrap-reverse;
-  row-gap: ${SPACES.s};
+  row-gap: ${SPACES.m};
 `;
 export const ButtonGroup = styled.div`
   display: flex;
@@ -36,18 +36,15 @@ export const SearchBarWrapper = styled.div`
   position: relative;
   width: 300px;
   @media screen and (max-width: ${MEDIA.tablet}px) {
-    width: 36%;
+    width: 280px;
   }
   @media screen and (max-width: ${MEDIA.mobile}px) {
-    width: 200px;
+    width: 100%;
   }
 `;
 
 export const SearchBarField = styled.input`
   width: 100%;
-  background-color: ${COLORS.white};
-  outline: 0;
-  border: 1px solid ${COLORS.black};
   outline: 0;
   text-decoration: none;
   padding: ${SPACES.xs} ${SPACES.s} ${SPACES.xs} ${SPACES.xl};

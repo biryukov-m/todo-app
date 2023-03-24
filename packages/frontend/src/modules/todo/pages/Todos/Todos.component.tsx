@@ -40,10 +40,10 @@ export const Todos: React.FC = () => {
       <>
         <Filters />
         {viewPortWidth > MEDIA.tablet && <TodosTable {...{ todos }} />}
-        {viewPortWidth < MEDIA.tablet && viewPortWidth > MEDIA.mobile && (
+        {viewPortWidth <= MEDIA.tablet && viewPortWidth > MEDIA.mobile && (
           <TodosTablet {...{ todos }} />
         )}
-        {viewPortWidth < MEDIA.mobile && <TodosMobile {...{ todos }} />}
+        {viewPortWidth <= MEDIA.mobile && <TodosMobile {...{ todos }} />}
         <span>Pagination</span>
       </>
     );

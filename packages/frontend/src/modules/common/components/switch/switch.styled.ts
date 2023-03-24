@@ -1,17 +1,12 @@
 import * as mui from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
-import { COLORS, SPACES, MEDIA } from '../../../theme';
+import { COLORS } from '../../../theme';
 
 export const CustomSwitch = mui.styled(Switch)`
     display: flex;
-    margin-left: auto;
     width: 50px;
     height: 26px;
     padding: 0;
-  @media screen and (max-width: ${MEDIA.mobile}px) {
-    margin-left: ${SPACES.xl};
-  }
-
     & .MuiSwitch-switchBase {
       padding: 0;
       margin: 0;

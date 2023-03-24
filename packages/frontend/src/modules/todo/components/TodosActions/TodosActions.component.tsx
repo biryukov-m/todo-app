@@ -59,7 +59,9 @@ export const TodosActions: React.FC<IProps> = ({ id, isCompleted }) => {
       </Link>
       <StyledButton onClick={handleEditClick}>Edit</StyledButton>
       <StyledButton onClick={handleDeleteClick}>Delete</StyledButton>
-      <StyledSwitch onClick={handleSwitchCompletedClick} checked={isCompleted} />
+      <Styled.SwitchContainer>
+        <StyledSwitch onClick={handleSwitchCompletedClick} checked={isCompleted} />
+      </Styled.SwitchContainer>
     </Styled.Wrapper>
   );
 };
