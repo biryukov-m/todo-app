@@ -22,9 +22,11 @@ export const AddTodoForm: React.FC<IProps> = ({ onClose }) => {
     }
   });
 
+  const handleClose = () => onClose();
+
   return (
     <Styled.Wrapper>
-      <Styled.Inner>
+      <Styled.Inner onMouseDown={() => handleClose()}>
         <Formik
           initialValues={{ title: '', description: '', isPublic: false }}
           validationSchema={todoFormValidationSchema}
@@ -35,7 +37,7 @@ export const AddTodoForm: React.FC<IProps> = ({ onClose }) => {
           }}
         >
           {({ isSubmitting, values, handleChange }) => (
-            <Form>
+            <Form onMouseDown={(e) => e.stopPropagation()}>
               <h2>Add Todo</h2>
 
               <label htmlFor="title">Title</label>
@@ -61,7 +63,7 @@ export const AddTodoForm: React.FC<IProps> = ({ onClose }) => {
               </Styled.SwitchContainer>
 
               <Styled.ButtonsContainer>
-                <StyledButton type="button" onClick={onClose}>
+                <StyledButton type="button" onClick={() => handleClose()}>
                   Close
                 </StyledButton>
                 <StyledButton type="submit" disabled={isSubmitting}>

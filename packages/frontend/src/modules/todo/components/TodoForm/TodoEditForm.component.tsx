@@ -28,18 +28,24 @@ export const TodoEditForm: React.FC<IProps> = ({ id, onClose }) => {
     }
   });
 
+  const handleClose = () => onClose();
+
   if (isLoading) {
     return (
-      <SpinnerWrapper>
-        <Spinner />
-      </SpinnerWrapper>
+      <Styled.Wrapper>
+        <Styled.Inner>
+          <SpinnerWrapper>
+            <Spinner />
+          </SpinnerWrapper>
+        </Styled.Inner>
+      </Styled.Wrapper>
     );
   }
 
   if (isSuccess) {
     return (
       <Styled.Wrapper>
-        <Styled.Inner>
+        <Styled.Inner onMouseDown={() => handleClose()}>
           <Formik
             initialValues={{ ...todo }}
             validationSchema={todoFormValidationSchema}
@@ -50,7 +56,7 @@ export const TodoEditForm: React.FC<IProps> = ({ id, onClose }) => {
             }}
           >
             {({ isSubmitting, values, handleChange }) => (
-              <Form>
+              <Form onMouseDown={(e) => e.stopPropagation()}>
                 <h2>Edit Todo</h2>
 
                 <label htmlFor="title">Title</label>
@@ -86,7 +92,7 @@ export const TodoEditForm: React.FC<IProps> = ({ id, onClose }) => {
                 </Styled.SwitchContainer>
 
                 <Styled.ButtonsContainer>
-                  <StyledButton type="button" onClick={onClose}>
+                  <StyledButton type="button" onClick={() => handleClose()}>
                     Close
                   </StyledButton>
                   <StyledButton type="submit" disabled={isSubmitting}>
