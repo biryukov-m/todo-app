@@ -1,7 +1,15 @@
 // eslint-disable-next-line import/prefer-default-export
 export const COLORS = {
-  white: '#ffffff',
-  black: '#2B2B2B',
-  primary: '#bbb2e9',
-  secondary: '#808080'
+  // Lavender bust
+  // white: '#FFEAEE',
+  // Mint cream
+  // white: '#F0F7EE',
+  // Baby Powder
+  white: '#FDFFFC',
+  // white: '#ffffff',
+  black: '#090909',
+  primary: '#53A2BE',
+  secondary: '#A80874',
+  grey: '#eeeeee',
+  darkGrey: '#cccccc'
 };

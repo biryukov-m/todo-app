@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import { COLORS } from '../theme';
+import { COLORS, FONTS } from '../theme';
+import '@fontsource/poppins';
 
 // eslint-disable-next-line import/prefer-default-export
 export const GlobalStyles = createGlobalStyle`
@@ -32,7 +33,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: Poppins, sans-serif;
+    font-family: ${FONTS.FAMILIES.normal};
     min-height: 100vh;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;

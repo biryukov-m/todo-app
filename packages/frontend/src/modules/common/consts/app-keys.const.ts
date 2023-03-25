@@ -1,31 +1,26 @@
 // Local storage keys
-export const STORAGE_KEYS = {
-  JWT_TOKEN_STUDENT: 'JWT_TOKEN_STUDENT',
-  JWT_TOKEN_INSTRUCTOR: 'JWT_TOKEN_INSTRUCTOR',
-  ADDRESS: 'ADDRESS',
-  TOKEN: 'TOKEN'
-};
+export enum StorageKeys {
+  JWT_TOKEN_STUDENT = 'JWT_TOKEN_STUDENT',
+  JWT_TOKEN_INSTRUCTOR = 'JWT_TOKEN_INSTRUCTOR',
+  ADDRESS = 'ADDRESS',
+  TOKEN = 'TOKEN'
+}
 
 // React-query keys
-export const QUERY_KEYS = {
-  EXAMPLE: 'EXAMPLE',
-  TOKEN: 'TOKEN',
-  STATISTIC: 'statistic',
-  TRENDING: 'trending'
-};
+export enum QueryKeys {
+  TODOS = 'todos',
+  TODO = 'todo'
+}
 
 // Backend Routes
-export const BACKEND_KEYS = {
-  EXAMPLE: 'example',
-  COURSES: 'courses',
-  ARTICLES: 'articles',
-  STATISTIC: 'statistic',
-  TRENDING: 'trending',
-  FEATURED_ARTICLES: 'featured_articles'
-};
+export enum BackendKeys {
+  TODOS_ROOT = 'todos'
+}
 
 export const ROUTER_KEYS = {
-  ROOT: '/',
-  HOME: 'home',
-  AUTHORIZED: 'authorized'
+  // ROOT: '/',
+  TODOS_ROOT: '/',
+  TODO: '/todo/:id'
+  // HOME: 'home',
+  // AUTHORIZED: 'authorized',
 };
